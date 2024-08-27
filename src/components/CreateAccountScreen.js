@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function CreateAccountScreen() {
+function CreateAccountScreen({ showLoginScreen }) {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -10,7 +10,7 @@ function CreateAccountScreen() {
   return (
     <div id="create-account-screen">
       <div className="back-button">
-        <button className="back-arrow">←</button>
+        <button className="back-arrow" onClick={showLoginScreen}>&lt;</button>
       </div>
       <input type="text" placeholder="Nombres" className="input-field" />
       <input type="text" placeholder="Apellidos" className="input-field" />

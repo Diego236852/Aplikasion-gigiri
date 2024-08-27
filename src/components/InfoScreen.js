@@ -16,7 +16,7 @@ function InfoScreen({ showLoginScreen }) {
         <div className="content">
           <img src="image1.png" alt="¿Qué es DIGUI?" className="info-image" /> {/* Imagen de ejemplo */}
           <h2>¿Qué es DIGUI?</h2>
-          <p>DIGUI es una app con juegos didácticos para niños.</p>
+          <p>DIGUI es una app con juegos didácticos para niños pendejos XDXD.</p>
           <PaginationDots currentPage={currentPage} />
           <button className="next-button" onClick={nextPage}>→</button>
 
