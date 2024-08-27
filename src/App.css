@@ -1,38 +1,205 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Poppins:wght@700&family=Quicksand:wght@400&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Pantalla de bienvenida */
+#welcome-screen {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+}
+
+.welcome-text {
+  font-family: 'Baloo 2', cursive;
+  font-size: 3rem;
+  color: #4B0082;
+  margin-bottom: 20px;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.digui-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: 5rem;
+  color: #4B0082;
+  margin-bottom: -30px; /* Ajustar para mejor alineación */
+}
+
+.smile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -60px;
+}
+
+/* Pantallas de información */
+#info-screen {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#info-screen .content {
+  text-align: center;
+  position: relative;
+}
+
+.info-image {
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+#info-screen h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+#info-screen p {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+#info-screen button {
+  background-color: #894192;
   color: white;
+  padding: 12px 24px; /* Aumentar padding para mejor visualización */
+  font-size: 1rem;
+  border: none;
+  border-radius: 15px; /* Cambiar a bordes redondeados */
+  cursor: pointer;
+  display: inline-block;
 }
 
-.App-link {
-  color: #61dafb;
+#info-screen button:hover {
+  background-color: #6b3376;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.next-button {
+  margin: 20px auto 0 auto;
+  display: block;
+  width: auto; /* Eliminar ancho fijo para que se ajuste al contenido */
+  height: auto; /* Eliminar altura fija */
+}
+
+/* Paginación (puntos) */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+
+.dot.active {
+  background-color: #894192;
+}
+
+/* Pantalla de inicio de sesión */
+#login-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px #bbb;
+  text-align: center;
+  width: 300px;
+}
+
+.login-container img.logo {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-button {
+  width: 100%;
+  background-color: #894192;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-button:hover {
+  background-color: #894192;
+}
+
+.forgot-password {
+  display: block;
+  margin-top: 10px;
+  color: #894192;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.create-account-button {
+  width: 100%;
+  background-color: #f1f1f1;
+  color: #333;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.create-account-button:hover {
+  background-color: #ddd;
 }
