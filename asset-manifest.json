@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.2fbe8d79.css",
-    "main.js": "/static/js/main.f5453ce9.js",
-    "static/js/453.37a6933b.chunk.js": "/static/js/453.37a6933b.chunk.js",
-    "index.html": "/index.html",
-    "main.2fbe8d79.css.map": "/static/css/main.2fbe8d79.css.map",
-    "main.f5453ce9.js.map": "/static/js/main.f5453ce9.js.map",
-    "453.37a6933b.chunk.js.map": "/static/js/453.37a6933b.chunk.js.map"
+    "main.css": "/Aplikasion-gigiri/static/css/main.2fbe8d79.css",
+    "main.js": "/Aplikasion-gigiri/static/js/main.31bda0c3.js",
+    "static/js/453.37a6933b.chunk.js": "/Aplikasion-gigiri/static/js/453.37a6933b.chunk.js",
+    "index.html": "/Aplikasion-gigiri/index.html",
+    "main.2fbe8d79.css.map": "/Aplikasion-gigiri/static/css/main.2fbe8d79.css.map",
+    "main.31bda0c3.js.map": "/Aplikasion-gigiri/static/js/main.31bda0c3.js.map",
+    "453.37a6933b.chunk.js.map": "/Aplikasion-gigiri/static/js/453.37a6933b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2fbe8d79.css",
-    "static/js/main.f5453ce9.js"
+    "static/js/main.31bda0c3.js"
   ]
 }
