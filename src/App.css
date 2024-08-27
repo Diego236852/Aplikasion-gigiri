@@ -145,6 +145,7 @@ body {
   box-shadow: 0 4px 12px #bbb;
   text-align: center;
   width: 300px;
+  font-family: 'Poppins', sans-serif; /* Aplica la fuente Poppins a toda la caja */
 }
 
 .login-container img.logo {
@@ -159,6 +160,8 @@ body {
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; /* Aplica Poppins Bold */
 }
 
 .login-button {
@@ -171,10 +174,12 @@ body {
   font-size: 1rem;
   cursor: pointer;
   margin-top: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; /* Aplica Poppins Bold */
 }
 
 .login-button:hover {
-  background-color: #894192;
+  background-color: #6b3376;
 }
 
 .forgot-password {
@@ -182,6 +187,8 @@ body {
   margin-top: 10px;
   color: #894192;
   text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; /* Aplica Poppins Bold */
 }
 
 .forgot-password:hover {
@@ -198,8 +205,122 @@ body {
   font-size: 1rem;
   cursor: pointer;
   margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; /* Aplica Poppins Bold */
 }
 
 .create-account-button:hover {
   background-color: #ddd;
+}
+
+.or-text {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; /* Aplica Poppins Bold */
+}
+
+.google-login-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  color: #333;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; /* Aplica Poppins Bold */
+}
+
+.google-logo {
+  width: 20px;
+  margin-right: 8px;
+}
+
+.google-login-button img {
+  width: 20px;
+  margin-right: 8px;
+}
+
+/* Pantalla de creación de cuenta */
+#create-account-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.back-button {
+  align-self: flex-start;
+}
+
+.back-arrow {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #894192;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+}
+
+.terms-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+#terms-checkbox {
+  margin-right: 10px;
+}
+
+.terms-container a {
+  color: #894192;
+  text-decoration: none;
+}
+
+.terms-container a:hover {
+  text-decoration: underline;
+}
+
+.create-account-button {
+  background-color: #894192;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-account-button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.create-account-button:enabled {
+  background-color: #894192;
+}
+
+.create-account-button:hover:enabled {
+  background-color: #6b3376;
 }
