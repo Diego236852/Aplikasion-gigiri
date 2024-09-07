@@ -280,7 +280,7 @@ body {
 }
 
 .input-field {
-  width: calc(100% - 40px); /* Ajusta el ancho para dejar margen adicional */
+  width: calc(100%); /* Ajusta el ancho para dejar margen adicional */
   padding: 12px;
   margin: 12px 0; /* Agrega más margen superior e inferior */
   box-sizing: border-box;
@@ -322,7 +322,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(100% - 40px); /* Ajusta el ancho para dejar margen adicional */
+  width: calc(100%); /* Ajusta el ancho para dejar margen adicional */
   margin-top: 20px; /* Agrega margen superior para separar del contenido anterior */
 }
 
@@ -346,22 +346,23 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #c8e6c9;
+  background-color: #c8e6c9; /* Fondo verde claro */
   height: 100vh;
   padding: 20px;
-  width: 100vw; /* Asegura que ocupe todo el ancho de la pantalla */
-  box-sizing: border-box; /* Incluye padding en el ancho total */
+  width: 100vw;
+  box-sizing: border-box;
 }
 
 .letter-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   grid-gap: 10px;
-  background-color: #d1c4e9;
+  background-color: #d1c4e9; /* Fondo morado claro */
   padding: 20px;
   border-radius: 15px;
   width: 100%;
-  max-width: 800px; /* Ajustar el ancho máximo */
+  max-width: 800px; /* Ajuste del ancho máximo */
+  position: relative; /* Necesario para posicionar las cartas sobre las letras */
 }
 
 .letter-box {
@@ -370,11 +371,30 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #e1bee7;
+  background-color: #e1bee7; /* Fondo rosa claro */
   font-size: 24px;
   font-weight: bold;
   color: #000;
   border-radius: 5px;
+  cursor: pointer;
+  position: relative; /* Para el posicionamiento absoluto de las cartas */
+}
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid #000;
+  border-radius: 5px;
+  z-index: 1;
+  pointer-events: none; /* Evita la interacción con la carta */
+  /* Asegúrate de que esta clase esté presente en el DOM */
 }
 
 .empty-boxes {
@@ -389,9 +409,41 @@ body {
 .empty-box {
   width: 100%;
   height: 60px;
-  background-color: #ffeb3b;
+  background-color: #ffeb3b; /* Fondo amarillo */
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
+
+.empty-box.correct {
+  background-color: #c5e1a5; /* Fondo verde claro para selección correcta */
+}
+
+.empty-box.incorrect {
+  background-color: #ef5350; /* Fondo rojo para selección incorrecta */
+  pointer-events: none; /* Deshabilita el clic en las cajas incorrectas */
+}
+
+.empty-box.incorrect-animation {
+  animation: shake 0.5s ease-in-out;
+}
+
+.empty-box.incorrect-animation {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0% { transform: translateX(-10px); }
+  50% { transform: translateX(10px); }
+  100% { transform: translateX(0); }
+}
+
 
 /* Media Queries para pantallas pequeñas */
 @media (max-width: 768px) {
