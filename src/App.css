@@ -12,6 +12,15 @@ body {
   overflow-x: hidden; /* Evita el desplazamiento horizontal no deseado */
 }
 
+/* Ajustes globales para evitar márgenes no deseados en los lados */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Previene el desplazamiento horizontal */
+}
+
 /* Pantalla de bienvenida */
 #welcome-screen {
   display: flex;
@@ -346,105 +355,143 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #c8e6c9; /* Fondo verde claro */
+  background-color: #E0F7FA; /* Fondo celeste claro */
   height: 100vh;
   padding: 20px;
   width: 100vw;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .letter-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  grid-template-columns: repeat(5, 1fr); /* 5 columnas */
   grid-gap: 10px;
-  background-color: #d1c4e9; /* Fondo morado claro */
-  padding: 20px;
+  background-color: #FFF9C4; /* Fondo amarillo suave */
+  padding: 15px;
   border-radius: 15px;
-  width: 100%;
-  max-width: 800px; /* Ajuste del ancho máximo */
-  position: relative; /* Necesario para posicionar las cartas sobre las letras */
+  width: 90%; /* Ocupa el 90% del ancho */
+  max-width: 600px; /* Ajusta el ancho máximo */
+  margin-bottom: 20px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .letter-box {
-  width: 100%;
-  height: 60px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: #e1bee7; /* Fondo rosa claro */
+  align-items: center;
+  background-color: #FFF176; /* Amarillo claro */
+  border-radius: 10px;
   font-size: 24px;
   font-weight: bold;
-  color: #000;
-  border-radius: 5px;
-  cursor: pointer;
-  position: relative; /* Para el posicionamiento absoluto de las cartas */
+  width: 100%;
+  height: 50px;
+  transition: transform 0.2s;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.card {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 2px solid #000;
-  border-radius: 5px;
-  z-index: 1;
-  pointer-events: none; /* Evita la interacción con la carta */
-  /* Asegúrate de que esta clase esté presente en el DOM */
+.letter-box:hover {
+  transform: scale(1.1);
 }
 
 .empty-boxes {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-  grid-gap: 10px;
-  margin-top: 20px;
-  width: 100%;
-  max-width: 800px;
+  grid-template-columns: repeat(4, 1fr); /* Ajuste a 4 columnas */
+  grid-gap: 15px;
+  width: 90%; /* Ajuste para pantallas pequeñas */
+  max-width: 500px;
+  margin-top: 10px;
 }
 
 .empty-box {
-  width: 100%;
-  height: 60px;
-  background-color: #ffeb3b; /* Fondo amarillo */
-  border-radius: 5px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  background-color: #FFEB3B; /* Fondo amarillo */
+  border-radius: 8px;
   font-size: 18px;
   font-weight: bold;
-  color: #000;
-  cursor: pointer;
+  height: 50px;
   transition: background-color 0.3s;
 }
 
 .empty-box.correct {
-  background-color: #c5e1a5; /* Fondo verde claro para selección correcta */
+  background-color: #C8E6C9; /* Verde claro para correcto */
 }
 
 .empty-box.incorrect {
-  background-color: #ef5350; /* Fondo rojo para selección incorrecta */
-  pointer-events: none; /* Deshabilita el clic en las cajas incorrectas */
+  background-color: #FF8A80; /* Fondo rojo para incorrecto */
 }
 
-.empty-box.incorrect-animation {
-  animation: shake 0.5s ease-in-out;
+/* Pantallas pequeñas y landscape */
+@media (max-width: 768px) {
+  .letter-box {
+    font-size: 18px;
+    height: 40px;
+  }
+
+  .empty-box {
+    font-size: 16px;
+    height: 40px;
+  }
+
+  .letter-grid {
+    grid-gap: 5px;
+  }
+
+  .empty-boxes {
+    grid-gap: 10px;
+  }
 }
 
-.empty-box.incorrect-animation {
-  animation: shake 0.5s ease-in-out;
+@media (orientation: landscape) {
+  .abc-piensa-container {
+    padding: 10px;
+  }
+
+  .letter-grid {
+    width: 80%; /* Más pequeño en landscape */
+  }
+
+  .empty-boxes {
+    width: 80%;
+  }
+}
+
+
+/* Efecto de brillo cuando se selecciona la casilla correcta */
+.empty-box.correct {
+  background-color: #C5E1A5; /* Fondo verde claro para selección correcta */
+  animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px #C5E1A5;
+  }
+  100% {
+    box-shadow: 0 0 20px #A5D6A7;
+  }
+}
+
+/* Efecto de sacudida para la casilla incorrecta */
+.incorrect-animation {
+  animation: shake 0.3s;
 }
 
 @keyframes shake {
-  0% { transform: translateX(-10px); }
-  50% { transform: translateX(10px); }
-  100% { transform: translateX(0); }
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
 }
 
-/* Estilos para el mensaje de ganador */
+/* Mensaje de ganador */
 .winner-message {
   display: flex;
   flex-direction: column;
@@ -453,18 +500,30 @@ body {
   margin-top: 20px;
 }
 
+.winner-text {
+  font-size: 2.5rem;
+  color: #FF1493;
+  animation: bounce 1s infinite;
+}
+
+/* Adaptación móvil */
+@media (max-width: 768px) {
+  .letter-box {
+    font-size: 22px;
+    height: 60px;
+  }
+
+  .empty-box {
+    height: 60px;
+  }
+}
+
+
 .trophy-image {
   width: 150px;
   height: auto;
   margin-bottom: 20px;
   animation: fadeIn 1s ease-in-out;
-}
-
-.winner-text {
-  font-size: 2.5rem;
-  font-family: 'Baloo 2', cursive;
-  color: #FF1493;
-  animation: bounce 1s infinite;
 }
 
 /* Animación de rebote */
@@ -602,3 +661,426 @@ body {
     height: 40px;
   }
 }
+
+/* Estilos de MenuScreen */
+.menu-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  height: 100vh; /* Mantiene la altura de la vista */
+  width: 100vw;
+  margin: 0;
+  overflow-y: auto; /* Permite desplazarse verticalmente */
+  padding-top: 80px; /* Espacio extra en la parte superior para asegurarte de que el contenido no esté bloqueado */
+  padding-bottom: 80px; /* Espacio extra en la parte inferior para la barra de navegación */
+  box-sizing: border-box; /* Incluye el padding en el tamaño total del contenedor */
+}
+
+
+.menu-header {
+  background-color: #894192;
+  padding: 20px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.menu-title {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ajusta la cantidad de columnas según el ancho */
+  grid-gap: 20px; /* Espacio entre los cards */
+  padding: 20px;
+  justify-items: center; /* Centra las tarjetas horizontalmente */
+  align-items: center; /* Centra las tarjetas verticalmente */
+  max-width: 1200px; /* Limita el ancho máximo */
+  margin-left: auto;
+  margin-right: auto;
+  flex-grow: 1; /* Permite que la cuadrícula ocupe el espacio disponible */
+}
+
+.game-card {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 150px; /* Ancho fijo */
+  height: 180px; /* Altura fija */
+}
+
+@media (max-width: 768px) {
+  .game-grid {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .game-grid {
+    grid-template-columns: repeat(1, 1fr); /* Una columna en pantallas muy pequeñas */
+  }
+}
+
+.game-card:hover {
+  transform: scale(1.05);
+}
+
+.game-image {
+  background-color: #e0e0e0;
+  width: 100%;
+  height: 80px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.game-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: #4B0082;
+  font-weight: bold;
+}
+
+
+
+/* Ajustes para pantallas grandes */
+@media (min-width: 1024px) {
+  .game-grid {
+    grid-template-columns: repeat(4, 1fr); /* Cuatro columnas en pantallas grandes */
+    grid-gap: 20px; /* Reducir el espacio entre columnas */
+  }
+}
+
+/* Ajustes para pantallas pequeñas (verticales) */
+@media (max-width: 768px) {
+  .menu-header {
+    padding: 15px;
+  }
+
+  .menu-title {
+    font-size: 1.5rem;
+  }
+
+  .game-grid {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas pequeñas */
+    grid-gap: 15px; /* Reducir el espacio entre tarjetas */
+  }
+
+  .game-card {
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+
+  .game-image {
+    height: 70px;
+  }
+
+  .bottom-nav {
+    padding: 8px 0;
+  }
+
+  .nav-button {
+    font-size: 0.8rem;
+  }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .menu-header {
+    padding: 10px;
+  }
+
+  .menu-title {
+    font-size: 1.3rem;
+  }
+
+  .game-grid {
+    grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+    padding: 0 5px;
+  }
+
+  .game-card {
+    padding: 10px;
+    margin-bottom: 8px;
+  }
+
+  .game-image {
+    height: 60px;
+  }
+
+  .bottom-nav {
+    padding: 6px 0;
+  }
+
+  .nav-button {
+    font-size: 0.7rem;
+  }
+}
+
+/* Pantalla de Ajustes */
+/* Ajustes para hacer el contenido desplazable y ajustar la barra de desplazamiento */
+.settings-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: auto; /* Habilita el desplazamiento vertical */
+  padding-top: 80px; /* Espacio para la barra superior */
+  width: 100vw; /* Asegura que el ancho cubra toda la pantalla */
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra el título */
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.back-button {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #894192;
+  cursor: pointer;
+}
+
+.settings-title {
+  font-size: 1.5rem;
+  text-align: center;
+  color: #894192;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Sección del perfil */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  background-color: #f3d0f5;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.profile-name {
+  font-size: 1.5rem;
+  color: #4B0082;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Opciones de configuración */
+/* Ajustes para el contenido */
+.settings-options {
+  width: 100%;
+  max-width: 500px;
+  padding-bottom: 20px; /* Añade espacio al final para evitar que quede cubierto por la barra inferior */
+  box-sizing: border-box; /* Asegura que padding no añada al ancho total */
+}
+
+.settings-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #894192;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.settings-option .option-title {
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.settings-option .option-subtitle {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 5px;
+}
+
+.settings-option .arrow {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.settings-options, .game-grid {
+  padding-bottom: 100px; /* Deja suficiente espacio para la barra inferior */
+}
+
+
+
+/* Flecha de regreso */
+.back-arrow {
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #894192;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.back-arrow:hover {
+  color: #6b3376;
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 768px) {
+  .profile-name {
+    font-size: 1.3rem;
+  }
+
+  .settings-option {
+    padding: 12px;
+  }
+
+  .settings-option .option-title {
+    font-size: 0.9rem;
+  }
+
+  .settings-option .option-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .settings-option .arrow {
+    font-size: 1.3rem;
+  }
+}
+
+/* Media Queries para pantallas grandes */
+@media (min-width: 1024px) {
+  .settings-option {
+    padding: 20px;
+  }
+
+  .settings-option .option-title {
+    font-size: 1.2rem;
+  }
+
+  .settings-option .option-subtitle {
+    font-size: 1rem;
+  }
+
+  .settings-option .arrow {
+    font-size: 1.8rem;
+  }
+}
+
+/* Barra superior fija */
+.top-bar {
+  background-color: #894192;
+  color: white;
+  padding: 20px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Asegura que esté por encima del contenido */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px; /* Ajusta la altura si es necesario */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Añadir espacio en el contenido para evitar que se superponga con la barra superior */
+.content {
+  padding-top: 80px; /* Asegura que el contenido no quede debajo de la barra superior */
+}
+
+
+.top-bar-title {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* Barra de Navegación Inferior */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #894192;
+  padding: 10px 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  width: 100vw;
+  margin: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.nav-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.6);
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+}
+
+.nav-button img {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 5px;
+  opacity: 0.6;
+}
+
+.nav-button span {
+  margin-top: 3px;
+}
+
+.nav-button.active {
+  color: #ffffff;
+}
+
+.nav-button.active img {
+  opacity: 1;
+}
+
+/* Ajustes específicos para pantallas más estrechas */
+@media (max-width: 480px) {
+  .nav-button img {
+    width: 20px; /* Ajustar el tamaño del ícono */
+    height: 20px;
+  }
+  
+  .nav-button span {
+    font-size: 0.7rem; /* Reducir el tamaño del texto */
+  }
+
+  .bottom-nav {
+    padding: 8px 0; /* Reducir el padding vertical */
+  }
+}
+

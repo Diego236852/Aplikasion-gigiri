@@ -2,14 +2,14 @@ import React from 'react';
 import googleLogo from '../assets/google-logo.png';
 import logoDigui from '../assets/Logo DiGui.png';
 
-function LoginScreen({ showCreateAccountScreen, showABCPiensa }) { // Añade showABCPiensa como prop
+function LoginScreen({ showCreateAccountScreen, showMenuScreen }) {
   return (
     <div id="login-screen">
       <div className="login-container">
         <img src={logoDigui} alt="DiGui" className="logo" />
         <input type="text" placeholder="Usuario" className="input-field" />
         <input type="password" placeholder="Contraseña" className="input-field" />
-        <button className="login-button" onClick={showABCPiensa}> {/* Cambia para ejecutar ABCPiensa */}
+        <button className="login-button" onClick={showMenuScreen}> {/* Cambiar a showMenuScreen */}
           Iniciar Sesión
         </button>
         <a href="#" className="forgot-password">¿Olvidaste la contraseña?</a>

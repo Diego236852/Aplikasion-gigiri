@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 
-function ABCPiensa({ showLoginScreen }) {  // Recibe la función para mostrar la pantalla de login
+function ABCPiensa({ showMenuScreen }) {
   const letters = [
-    ['E', 'T', 'S', 'C', 'J'],
-    ['L', 'K', 'R', 'X', 'H'],
-    ['Ñ', 'F', 'R', 'A', 'M'],
-    ['W', 'Y', 'A', 'M', 'W'],
-    ['D', 'O', 'U', 'I', 'Z'],
-    ['V', 'I', 'N', 'Z', 'N']
-  ];
+    ['E', 'T', 'S', 'C', 'J', 'V'],
+    ['L', 'K', 'R', 'X', 'H', 'I'],
+    ['Ñ', 'F', 'R', 'A', 'M', 'N'],
+    ['W', 'Y', 'A', 'M', 'W', 'Z'],
+    ['D', 'O', 'U', 'I', 'Z', 'N']
+  ];  
 
   const initialWords = ['ESTO', 'LUZ', 'MAR', 'SOL', 'VIDA', 'CIERVO'];
 
@@ -59,9 +58,9 @@ function ABCPiensa({ showLoginScreen }) {  // Recibe la función para mostrar la
 
   return (
     <div className="abc-piensa-container">
-      {/* Flecha de regreso */}
-      <button className="back-arrow" onClick={showLoginScreen}>←</button>
+      <button className="back-arrow" onClick={showMenuScreen}>←</button>
 
+      {/* Cuadrícula de letras */}
       <div className="letter-grid">
         {letters.map((row, rowIndex) => (
           <div key={rowIndex} className="row">
@@ -82,6 +81,8 @@ function ABCPiensa({ showLoginScreen }) {  // Recibe la función para mostrar la
           </div>
         ))}
       </div>
+
+      {/* Casillas amarillas */}
       <div className="empty-boxes">
         {words.map((word, index) => (
           <div
@@ -95,6 +96,7 @@ function ABCPiensa({ showLoginScreen }) {  // Recibe la función para mostrar la
           </div>
         ))}
       </div>
+
       {hasWon && (
         <div className="winner-message">
           <img src={process.env.PUBLIC_URL + '/images/trophy.png'} alt="Trophy" className="trophy-image" />
