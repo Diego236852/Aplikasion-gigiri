@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.5c3bf9df.css",
-    "main.js": "/static/js/main.2a6a49e2.js",
-    "static/js/453.ddac74fa.chunk.js": "/static/js/453.ddac74fa.chunk.js",
-    "static/media/Logo DiGui.png": "/static/media/Logo DiGui.68cc06e0641d15e7c6cb.png",
-    "static/media/google-logo.png": "/static/media/google-logo.264682585e33eac2bcb2.png",
-    "index.html": "/index.html",
-    "main.5c3bf9df.css.map": "/static/css/main.5c3bf9df.css.map",
-    "main.2a6a49e2.js.map": "/static/js/main.2a6a49e2.js.map",
-    "453.ddac74fa.chunk.js.map": "/static/js/453.ddac74fa.chunk.js.map"
+    "main.css": "/Aplikasion-gigiri/static/css/main.5c3bf9df.css",
+    "main.js": "/Aplikasion-gigiri/static/js/main.0f5881ee.js",
+    "static/js/453.37a6933b.chunk.js": "/Aplikasion-gigiri/static/js/453.37a6933b.chunk.js",
+    "static/media/Logo DiGui.png": "/Aplikasion-gigiri/static/media/Logo DiGui.68cc06e0641d15e7c6cb.png",
+    "static/media/google-logo.png": "/Aplikasion-gigiri/static/media/google-logo.264682585e33eac2bcb2.png",
+    "index.html": "/Aplikasion-gigiri/index.html",
+    "main.5c3bf9df.css.map": "/Aplikasion-gigiri/static/css/main.5c3bf9df.css.map",
+    "main.0f5881ee.js.map": "/Aplikasion-gigiri/static/js/main.0f5881ee.js.map",
+    "453.37a6933b.chunk.js.map": "/Aplikasion-gigiri/static/js/453.37a6933b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5c3bf9df.css",
-    "static/js/main.2a6a49e2.js"
+    "static/js/main.0f5881ee.js"
   ]
 }
