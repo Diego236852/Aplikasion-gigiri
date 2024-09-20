@@ -12,7 +12,7 @@ function App() {
   const showInfoScreen = () => setScreen('info');
   const showLoginScreen = () => setScreen('login');
   const showCreateAccountScreen = () => setScreen('createAccount');
-  const showABCPiensa = () => setScreen('abcpiensa'); // Añade esta función
+  const showABCPiensa = () => setScreen('abcpiensa'); 
 
   return (
     <div className="App">
@@ -20,7 +20,7 @@ function App() {
       {screen === 'info' && <InfoScreen showLoginScreen={showLoginScreen} />}
       {screen === 'login' && <LoginScreen showCreateAccountScreen={showCreateAccountScreen} showABCPiensa={showABCPiensa} />}
       {screen === 'createAccount' && <CreateAccountScreen showLoginScreen={showLoginScreen} />}
-      {screen === 'abcpiensa' && <ABCPiensa />} {/* Renderiza ABCPiensa */}
+      {screen === 'abcpiensa' && <ABCPiensa showLoginScreen={showLoginScreen} />} {/* Pasa showLoginScreen */}
     </div>
   );
 }

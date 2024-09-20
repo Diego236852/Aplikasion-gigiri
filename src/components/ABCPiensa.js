@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
 
-function ABCPiensa() {
+function ABCPiensa({ showLoginScreen }) {  // Recibe la función para mostrar la pantalla de login
   const letters = [
     ['E', 'T', 'S', 'C', 'J'],
     ['L', 'K', 'R', 'X', 'H'],
@@ -15,8 +15,9 @@ function ABCPiensa() {
 
   const [words, setWords] = useState(initialWords);
   const [selectedWord, setSelectedWord] = useState('');
-  const [correctBoxes, setCorrectBoxes] = useState({}); // Para almacenar las palabras correctamente colocadas
-  const [incorrectBoxes, setIncorrectBoxes] = useState(new Set()); // Para almacenar las cajas incorrectas
+  const [correctBoxes, setCorrectBoxes] = useState({});
+  const [incorrectBoxes, setIncorrectBoxes] = useState(new Set());
+  const [hasWon, setHasWon] = useState(false);
 
   const handleWordClick = (word) => {
     setSelectedWord(word);
@@ -27,37 +28,40 @@ function ABCPiensa() {
     const droppedWord = event.dataTransfer.getData('text');
 
     if (droppedWord[0] !== letter) {
-      // Si la primera letra no es la correcta, marcar la caja como incorrecta
       setIncorrectBoxes(prev => new Set(prev).add(`${rowIndex}-${colIndex}`));
       setTimeout(() => setIncorrectBoxes(prev => {
         const newSet = new Set(prev);
         newSet.delete(`${rowIndex}-${colIndex}`);
         return newSet;
-      }), 500); // Eliminar la clase después de la animación
+      }), 500);
       return;
     }
 
-    // Colocar la palabra encima de la primera letra correcta
     setCorrectBoxes((prev) => ({
       ...prev,
       [`${rowIndex}-${colIndex}`]: droppedWord
     }));
 
-    // Remover la palabra de la lista de palabras disponibles
     setWords(prevWords => prevWords.filter(word => word !== droppedWord));
   };
 
   const handleDragStart = (e, word) => {
-    e.dataTransfer.setData('text', word); // Ahora estamos arrastrando la palabra completa
+    e.dataTransfer.setData('text', word);
   };
 
-  // Verificar si el jugador ha ganado
-  const hasWon = initialWords.every(word => {
-    return Object.values(correctBoxes).includes(word);
-  });
+  useEffect(() => {
+    if (Object.keys(correctBoxes).length === initialWords.length) {
+      setHasWon(true);
+      const audio = new Audio(process.env.PUBLIC_URL + '/sounds/celebration-sound.mp3');
+      audio.play();
+    }
+  }, [correctBoxes]);
 
   return (
     <div className="abc-piensa-container">
+      {/* Flecha de regreso */}
+      <button className="back-arrow" onClick={showLoginScreen}>←</button>
+
       <div className="letter-grid">
         {letters.map((row, rowIndex) => (
           <div key={rowIndex} className="row">
@@ -68,7 +72,6 @@ function ABCPiensa() {
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => handleDrop(e, letter, rowIndex, colIndex)}
               >
-                {/* Mostrar la palabra si ha sido colocada correctamente */}
                 {correctBoxes[`${rowIndex}-${colIndex}`] ? (
                   <div className="card">{correctBoxes[`${rowIndex}-${colIndex}`]}</div>
                 ) : (
@@ -85,14 +88,19 @@ function ABCPiensa() {
             key={index}
             className={`empty-box ${selectedWord === word ? 'selected' : ''}`}
             onClick={() => handleWordClick(word)}
-            draggable={!Object.values(correctBoxes).includes(word)} // Desactiva el drag si ya ha sido colocada
+            draggable={!Object.values(correctBoxes).includes(word)}
             onDragStart={(e) => handleDragStart(e, word)}
           >
             {word}
           </div>
         ))}
       </div>
-      {hasWon && <div className="winner-message">¡Felicidades, has ganado!</div>}
+      {hasWon && (
+        <div className="winner-message">
+          <img src={process.env.PUBLIC_URL + '/images/trophy.png'} alt="Trophy" className="trophy-image" />
+          <p className="winner-text">¡Eres un campeón, has ganado!</p>
+        </div>
+      )}
     </div>
   );
 }
