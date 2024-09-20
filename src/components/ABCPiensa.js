@@ -11,41 +11,49 @@ function ABCPiensa() {
     ['V', 'I', 'N', 'Z', 'N']
   ];
 
-  const words = ['ESTO', 'LUZ', 'MAR', 'SOL', 'VIDA', 'CIERVO'];
+  const initialWords = ['ESTO', 'LUZ', 'MAR', 'SOL', 'VIDA', 'CIERVO'];
 
+  const [words, setWords] = useState(initialWords);
   const [selectedWord, setSelectedWord] = useState('');
-  const [correctBoxes, setCorrectBoxes] = useState({}); // Para almacenar las cartas correctamente colocadas
+  const [correctBoxes, setCorrectBoxes] = useState({}); // Para almacenar las palabras correctamente colocadas
   const [incorrectBoxes, setIncorrectBoxes] = useState(new Set()); // Para almacenar las cajas incorrectas
 
   const handleWordClick = (word) => {
     setSelectedWord(word);
   };
 
-  const handleDrop = (event, letter) => {
+  const handleDrop = (event, letter, rowIndex, colIndex) => {
     event.preventDefault();
-    const droppedLetter = event.dataTransfer.getData('text');
-    if (droppedLetter !== letter) {
-      // Si la letra no es la correcta, actualizar el estado para marcar la caja como incorrecta
-      setIncorrectBoxes(prev => new Set(prev).add(letter));
+    const droppedWord = event.dataTransfer.getData('text');
+
+    if (droppedWord[0] !== letter) {
+      // Si la primera letra no es la correcta, marcar la caja como incorrecta
+      setIncorrectBoxes(prev => new Set(prev).add(`${rowIndex}-${colIndex}`));
       setTimeout(() => setIncorrectBoxes(prev => {
         const newSet = new Set(prev);
-        newSet.delete(letter);
+        newSet.delete(`${rowIndex}-${colIndex}`);
         return newSet;
       }), 500); // Eliminar la clase después de la animación
       return;
     }
-    // Actualizar el estado para colocar la carta encima de la letra correcta
-    setCorrectBoxes((prev) => ({ ...prev, [letter]: droppedLetter }));
+
+    // Colocar la palabra encima de la primera letra correcta
+    setCorrectBoxes((prev) => ({
+      ...prev,
+      [`${rowIndex}-${colIndex}`]: droppedWord
+    }));
+
+    // Remover la palabra de la lista de palabras disponibles
+    setWords(prevWords => prevWords.filter(word => word !== droppedWord));
   };
 
   const handleDragStart = (e, word) => {
-    e.dataTransfer.setData('text', word[0]);
+    e.dataTransfer.setData('text', word); // Ahora estamos arrastrando la palabra completa
   };
 
   // Verificar si el jugador ha ganado
-  const hasWon = words.every(word => {
-    const letter = word[0];
-    return Object.values(correctBoxes).includes(letter);
+  const hasWon = initialWords.every(word => {
+    return Object.values(correctBoxes).includes(word);
   });
 
   return (
@@ -56,13 +64,13 @@ function ABCPiensa() {
             {row.map((letter, colIndex) => (
               <div
                 key={colIndex}
-                className={`letter-box ${incorrectBoxes.has(letter) ? 'incorrect-animation' : ''}`}
+                className={`letter-box ${incorrectBoxes.has(`${rowIndex}-${colIndex}`) ? 'incorrect-animation' : ''}`}
                 onDragOver={(e) => e.preventDefault()}
-                onDrop={(e) => handleDrop(e, letter)}
+                onDrop={(e) => handleDrop(e, letter, rowIndex, colIndex)}
               >
-                {/* Mostrar la carta si ha sido colocada correctamente */}
-                {correctBoxes[letter] ? (
-                  <div className="card">{correctBoxes[letter]}</div>
+                {/* Mostrar la palabra si ha sido colocada correctamente */}
+                {correctBoxes[`${rowIndex}-${colIndex}`] ? (
+                  <div className="card">{correctBoxes[`${rowIndex}-${colIndex}`]}</div>
                 ) : (
                   letter
                 )}
@@ -77,7 +85,7 @@ function ABCPiensa() {
             key={index}
             className={`empty-box ${selectedWord === word ? 'selected' : ''}`}
             onClick={() => handleWordClick(word)}
-            draggable
+            draggable={!Object.values(correctBoxes).includes(word)} // Desactiva el drag si ya ha sido colocada
             onDragStart={(e) => handleDragStart(e, word)}
           >
             {word}
