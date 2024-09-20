@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Aplikasion-gigiri/static/css/main.22950512.css",
+    "main.css": "/Aplikasion-gigiri/static/css/main.f27882ec.css",
     "main.js": "/Aplikasion-gigiri/static/js/main.1938401e.js",
     "static/js/453.37a6933b.chunk.js": "/Aplikasion-gigiri/static/js/453.37a6933b.chunk.js",
     "static/media/Logo DiGui.png": "/Aplikasion-gigiri/static/media/Logo DiGui.68cc06e0641d15e7c6cb.png",
     "static/media/google-logo.png": "/Aplikasion-gigiri/static/media/google-logo.264682585e33eac2bcb2.png",
     "index.html": "/Aplikasion-gigiri/index.html",
-    "main.22950512.css.map": "/Aplikasion-gigiri/static/css/main.22950512.css.map",
+    "main.f27882ec.css.map": "/Aplikasion-gigiri/static/css/main.f27882ec.css.map",
     "main.1938401e.js.map": "/Aplikasion-gigiri/static/js/main.1938401e.js.map",
     "453.37a6933b.chunk.js.map": "/Aplikasion-gigiri/static/js/453.37a6933b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.22950512.css",
+    "static/css/main.f27882ec.css",
     "static/js/main.1938401e.js"
   ]
 }
