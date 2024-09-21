@@ -3,30 +3,55 @@ import '../App.css';
 
 function ABCPiensa({ showMenuScreen }) {
   const letters = [
-    ['E', 'T', 'S', 'C', 'J', 'V'],
-    ['L', 'K', 'R', 'X', 'H', 'I'],
-    ['Ñ', 'F', 'R', 'A', 'M', 'N'],
-    ['W', 'Y', 'A', 'M', 'W', 'Z'],
-    ['D', 'O', 'U', 'I', 'Z', 'N']
-  ];  
+    ['A', 'B', 'C', 'D', 'E', 'Y'],
+    ['F', 'G', 'H', 'I', 'J', 'Z'],
+    ['K', 'L', 'M', 'N', 'Ñ'],
+    ['O', 'P', 'Q', 'R', 'S'],
+    ['T', 'U', 'V', 'W', 'X']
+  ];
 
-  const initialWords = ['ESTO', 'LUZ', 'MAR', 'SOL', 'VIDA', 'CIERVO'];
+  // Lista de imágenes ordenadas alfabéticamente
+  const initialImages = [
+    { src: '/images/arbol.png', letter: 'A' },
+    { src: '/images/billete.png', letter: 'B' },
+    { src: '/images/casa.png', letter: 'C' },
+    { src: '/images/dedo.png', letter: 'D' },
+    { src: '/images/estrella.png', letter: 'E' },
+    { src: '/images/flor.png', letter: 'F' },
+    { src: '/images/galleta.png', letter: 'G' },
+    { src: '/images/hoja.png', letter: 'H' },
+    { src: '/images/iman.png', letter: 'I' },
+    { src: '/images/jarron.png', letter: 'J' },
+    { src: '/images/kilo.png', letter: 'K' },
+    { src: '/images/luna.png', letter: 'L' },
+    { src: '/images/mochila.png', letter: 'M' },
+    { src: '/images/nube.png', letter: 'N' },
+    { src: '/images/ñame.png', letter: 'Ñ' },
+    { src: '/images/ojo.png', letter: 'O' },
+    { src: '/images/pera.png', letter: 'P' },
+    { src: '/images/queso.png', letter: 'Q' },
+    { src: '/images/reloj.png', letter: 'R' },
+    { src: '/images/sopa.png', letter: 'S' },
+    { src: '/images/tuerca.png', letter: 'T' },
+    { src: '/images/uva.png', letter: 'U' },
+    { src: '/images/vaso.png', letter: 'V' },
+    { src: '/images/wifi.png', letter: 'W' },
+    { src: '/images/xilofono.png', letter: 'X' },
+    { src: '/images/yoyo.png', letter: 'Y' },
+    { src: '/images/zapato.png', letter: 'Z' }
+  ];
 
-  const [words, setWords] = useState(initialWords);
-  const [selectedWord, setSelectedWord] = useState('');
+  const [images, setImages] = useState(initialImages);
   const [correctBoxes, setCorrectBoxes] = useState({});
   const [incorrectBoxes, setIncorrectBoxes] = useState(new Set());
   const [hasWon, setHasWon] = useState(false);
 
-  const handleWordClick = (word) => {
-    setSelectedWord(word);
-  };
-
   const handleDrop = (event, letter, rowIndex, colIndex) => {
     event.preventDefault();
-    const droppedWord = event.dataTransfer.getData('text');
+    const droppedImageSrc = event.dataTransfer.getData('src');
+    const droppedImageLetter = event.dataTransfer.getData('letter');
 
-    if (droppedWord[0] !== letter) {
+    if (droppedImageLetter !== letter) {
       setIncorrectBoxes(prev => new Set(prev).add(`${rowIndex}-${colIndex}`));
       setTimeout(() => setIncorrectBoxes(prev => {
         const newSet = new Set(prev);
@@ -38,18 +63,19 @@ function ABCPiensa({ showMenuScreen }) {
 
     setCorrectBoxes((prev) => ({
       ...prev,
-      [`${rowIndex}-${colIndex}`]: droppedWord
+      [`${rowIndex}-${colIndex}`]: droppedImageSrc
     }));
 
-    setWords(prevWords => prevWords.filter(word => word !== droppedWord));
+    setImages(prevImages => prevImages.filter(image => image.src !== droppedImageSrc));
   };
 
-  const handleDragStart = (e, word) => {
-    e.dataTransfer.setData('text', word);
+  const handleDragStart = (e, image) => {
+    e.dataTransfer.setData('src', image.src);
+    e.dataTransfer.setData('letter', image.letter);
   };
 
   useEffect(() => {
-    if (Object.keys(correctBoxes).length === initialWords.length) {
+    if (Object.keys(correctBoxes).length === initialImages.length) {
       setHasWon(true);
       const audio = new Audio(process.env.PUBLIC_URL + '/sounds/celebration-sound.mp3');
       audio.play();
@@ -60,7 +86,6 @@ function ABCPiensa({ showMenuScreen }) {
     <div className="abc-piensa-container">
       <button className="back-arrow" onClick={showMenuScreen}>←</button>
 
-      {/* Cuadrícula de letras */}
       <div className="letter-grid">
         {letters.map((row, rowIndex) => (
           <div key={rowIndex} className="row">
@@ -72,7 +97,7 @@ function ABCPiensa({ showMenuScreen }) {
                 onDrop={(e) => handleDrop(e, letter, rowIndex, colIndex)}
               >
                 {correctBoxes[`${rowIndex}-${colIndex}`] ? (
-                  <div className="card">{correctBoxes[`${rowIndex}-${colIndex}`]}</div>
+                  <img src={correctBoxes[`${rowIndex}-${colIndex}`]} alt={letter} className="card" />
                 ) : (
                   letter
                 )}
@@ -82,19 +107,30 @@ function ABCPiensa({ showMenuScreen }) {
         ))}
       </div>
 
-      {/* Casillas amarillas */}
-      <div className="empty-boxes">
-        {words.map((word, index) => (
-          <div
-            key={index}
-            className={`empty-box ${selectedWord === word ? 'selected' : ''}`}
-            onClick={() => handleWordClick(word)}
-            draggable={!Object.values(correctBoxes).includes(word)}
-            onDragStart={(e) => handleDragStart(e, word)}
-          >
-            {word}
-          </div>
-        ))}
+      {/* Banco de imágenes como cartas apiladas */}
+      <div className="image-bank">
+        {images.map((image, index) => {
+          const maxImagesPerRow = 9;
+          const stackColumnIndex = index % maxImagesPerRow;
+          const stackRowIndex = Math.floor(index / maxImagesPerRow);
+
+          const style = {
+            '--stack-index-x': stackColumnIndex, 
+            '--stack-index-y': stackRowIndex  
+          };
+
+          return (
+            <img
+              key={index}
+              src={image.src}
+              alt={`Imagen ${index}`}
+              className="image-card"
+              style={style}
+              draggable
+              onDragStart={(e) => handleDragStart(e, image)}
+            />
+          );
+        })}
       </div>
 
       {hasWon && (
