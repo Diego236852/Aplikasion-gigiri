@@ -482,6 +482,10 @@ body, html {
 }
 
 
+/* Clase para la imagen seleccionada */
+.image-card.selected {
+  border: 3px solid #4CAF50; /* Borde verde para la imagen seleccionada */
+}
 
 
 
@@ -616,50 +620,24 @@ body, html {
 
 
 /* Media Queries para pantallas pequeñas */
+/* Ajustes para pantallas pequeñas */
 @media (max-width: 768px) {
-  .welcome-text {
-    font-size: 2rem;
+  .letter-box {
+    width: 40px;
+    height: 40px;
+    font-size: calc(2vw + 10px); /* Ajuste la fuente y tamaño para pantallas pequeñas */
   }
 
-  .digui-title {
-    font-size: 3rem;
-  }
-
-  .login-container,
-  #info-screen {
-    width: 90%;
-  }
-
-  .input-field,
-  .login-button,
-  .create-account-button {
-    font-size: 0.9rem;
-  }
-
-  .input-field {
-    padding: 8px;
-  }
-
-  .login-button,
-  .create-account-button {
-    padding: 10px;
-  }
-
-  .google-login-button {
-    padding: 10px;
-    font-size: 0.9rem;
-  }
+  
 
   .abc-piensa-container {
     padding: 10px;
   }
 
-  .letter-box {
-    font-size: 18px;
-  }
-
-  .empty-box {
-    height: 50px;
+  .image-bank {
+    max-width: 100%;
+    padding: 10px;
+    gap: 5px;
   }
 }
 

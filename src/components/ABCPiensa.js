@@ -45,33 +45,32 @@ function ABCPiensa({ showMenuScreen }) {
   const [correctBoxes, setCorrectBoxes] = useState({});
   const [incorrectBoxes, setIncorrectBoxes] = useState(new Set());
   const [hasWon, setHasWon] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null); // Estado para la imagen seleccionada
 
-  const handleDrop = (event, letter, rowIndex, colIndex) => {
-    event.preventDefault();
-    const droppedImageSrc = event.dataTransfer.getData('src');
-    const droppedImageLetter = event.dataTransfer.getData('letter');
-
-    if (droppedImageLetter !== letter) {
-      setIncorrectBoxes(prev => new Set(prev).add(`${rowIndex}-${colIndex}`));
-      setTimeout(() => setIncorrectBoxes(prev => {
-        const newSet = new Set(prev);
-        newSet.delete(`${rowIndex}-${colIndex}`);
-        return newSet;
-      }), 500);
-      return;
-    }
-
-    setCorrectBoxes((prev) => ({
-      ...prev,
-      [`${rowIndex}-${colIndex}`]: droppedImageSrc
-    }));
-
-    setImages(prevImages => prevImages.filter(image => image.src !== droppedImageSrc));
+  // Función para manejar el clic en una imagen
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
   };
 
-  const handleDragStart = (e, image) => {
-    e.dataTransfer.setData('src', image.src);
-    e.dataTransfer.setData('letter', image.letter);
+  // Función para manejar el clic en una letra
+  const handleLetterClick = (letter, rowIndex, colIndex) => {
+    if (selectedImage) {
+      if (selectedImage.letter === letter) {
+        setCorrectBoxes((prev) => ({
+          ...prev,
+          [`${rowIndex}-${colIndex}`]: selectedImage.src
+        }));
+        setImages((prevImages) => prevImages.filter(img => img.src !== selectedImage.src));
+        setSelectedImage(null); // Desseleccionar la imagen después de colocarla
+      } else {
+        setIncorrectBoxes(prev => new Set(prev).add(`${rowIndex}-${colIndex}`));
+        setTimeout(() => setIncorrectBoxes(prev => {
+          const newSet = new Set(prev);
+          newSet.delete(`${rowIndex}-${colIndex}`);
+          return newSet;
+        }), 500);
+      }
+    }
   };
 
   useEffect(() => {
@@ -93,8 +92,7 @@ function ABCPiensa({ showMenuScreen }) {
               <div
                 key={colIndex}
                 className={`letter-box ${incorrectBoxes.has(`${rowIndex}-${colIndex}`) ? 'incorrect-animation' : ''}`}
-                onDragOver={(e) => e.preventDefault()}
-                onDrop={(e) => handleDrop(e, letter, rowIndex, colIndex)}
+                onClick={() => handleLetterClick(letter, rowIndex, colIndex)} // Usar clic en lugar de arrastrar
               >
                 {correctBoxes[`${rowIndex}-${colIndex}`] ? (
                   <img src={correctBoxes[`${rowIndex}-${colIndex}`]} alt={letter} className="card" />
@@ -107,30 +105,16 @@ function ABCPiensa({ showMenuScreen }) {
         ))}
       </div>
 
-      {/* Banco de imágenes como cartas apiladas */}
       <div className="image-bank">
-        {images.map((image, index) => {
-          const maxImagesPerRow = 9;
-          const stackColumnIndex = index % maxImagesPerRow;
-          const stackRowIndex = Math.floor(index / maxImagesPerRow);
-
-          const style = {
-            '--stack-index-x': stackColumnIndex, 
-            '--stack-index-y': stackRowIndex  
-          };
-
-          return (
-            <img
-              key={index}
-              src={image.src}
-              alt={`Imagen ${index}`}
-              className="image-card"
-              style={style}
-              draggable
-              onDragStart={(e) => handleDragStart(e, image)}
-            />
-          );
-        })}
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image.src}
+            alt={`Imagen ${index}`}
+            className={`image-card ${selectedImage === image ? 'selected' : ''}`} // Añadir clase si está seleccionada
+            onClick={() => handleImageClick(image)} // Seleccionar con un clic
+          />
+        ))}
       </div>
 
       {hasWon && (
