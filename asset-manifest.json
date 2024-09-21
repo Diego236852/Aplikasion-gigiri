@@ -1,17 +1,43 @@
 {
   "files": {
     "main.css": "/Aplikasion-gigiri/static/css/main.6a5b7105.css",
-    "main.js": "/Aplikasion-gigiri/static/js/main.c0acb8de.js",
+    "main.js": "/Aplikasion-gigiri/static/js/main.f108aaf8.js",
     "static/js/453.37a6933b.chunk.js": "/Aplikasion-gigiri/static/js/453.37a6933b.chunk.js",
     "static/media/Logo DiGui.png": "/Aplikasion-gigiri/static/media/Logo DiGui.68cc06e0641d15e7c6cb.png",
+    "static/media/yoyo.png": "/Aplikasion-gigiri/static/media/yoyo.f125f4328f96fbfa4eea.png",
+    "static/media/xilofono.png": "/Aplikasion-gigiri/static/media/xilofono.7285ade5df08fc82476a.png",
+    "static/media/uva.png": "/Aplikasion-gigiri/static/media/uva.7b357def2131ac4c3777.png",
+    "static/media/arbol.png": "/Aplikasion-gigiri/static/media/arbol.66ccca7c8681c0b42fb4.png",
+    "static/media/reloj.png": "/Aplikasion-gigiri/static/media/reloj.4cbae1617d0375456ef3.png",
+    "static/media/ñame.png": "/Aplikasion-gigiri/static/media/ñame.ab47bbfbe609fcb969fb.png",
+    "static/media/galleta.png": "/Aplikasion-gigiri/static/media/galleta.e8557c7b85f43b581988.png",
+    "static/media/mochila.png": "/Aplikasion-gigiri/static/media/mochila.a8f27a42f45332e75ddd.png",
+    "static/media/jarron.png": "/Aplikasion-gigiri/static/media/jarron.d1131fdc50183487c272.png",
+    "static/media/sopa.png": "/Aplikasion-gigiri/static/media/sopa.b7904515acdeb6d190a1.png",
+    "static/media/kilo.png": "/Aplikasion-gigiri/static/media/kilo.d1849d75a69f3e2c0823.png",
+    "static/media/wifi.png": "/Aplikasion-gigiri/static/media/wifi.f0a029f03195186f5b13.png",
+    "static/media/zapato.png": "/Aplikasion-gigiri/static/media/zapato.bb3ad4544d511ff12f79.png",
+    "static/media/iman.png": "/Aplikasion-gigiri/static/media/iman.b0a46a63c597283d4999.png",
+    "static/media/vaso.png": "/Aplikasion-gigiri/static/media/vaso.f00748198e501309111e.png",
+    "static/media/flor.png": "/Aplikasion-gigiri/static/media/flor.a700f5c4c8ba069dc399.png",
+    "static/media/casa.png": "/Aplikasion-gigiri/static/media/casa.da01bfc315b67e5e0abf.png",
+    "static/media/tuerca.png": "/Aplikasion-gigiri/static/media/tuerca.4515370216e8f949ffa8.png",
+    "static/media/billete.png": "/Aplikasion-gigiri/static/media/billete.0f920a9329698461c167.png",
+    "static/media/ojo.png": "/Aplikasion-gigiri/static/media/ojo.b9c063ff1dc8e22a6740.png",
+    "static/media/queso.png": "/Aplikasion-gigiri/static/media/queso.6863b1b92e58911f7baf.png",
+    "static/media/pera.png": "/Aplikasion-gigiri/static/media/pera.74f6165423aa6996e51c.png",
+    "static/media/dedo.png": "/Aplikasion-gigiri/static/media/dedo.c095b929dfc238c5e53c.png",
     "static/media/google-logo.png": "/Aplikasion-gigiri/static/media/google-logo.264682585e33eac2bcb2.png",
+    "static/media/hoja.png": "/Aplikasion-gigiri/static/media/hoja.46d9b8f4cfd0aaee79e7.png",
+    "static/media/nube.png": "/Aplikasion-gigiri/static/media/nube.68df736a8169f30d64c7.png",
+    "static/media/estrella.png": "/Aplikasion-gigiri/static/media/estrella.fa2c46f548092bee5380.png",
     "index.html": "/Aplikasion-gigiri/index.html",
     "main.6a5b7105.css.map": "/Aplikasion-gigiri/static/css/main.6a5b7105.css.map",
-    "main.c0acb8de.js.map": "/Aplikasion-gigiri/static/js/main.c0acb8de.js.map",
+    "main.f108aaf8.js.map": "/Aplikasion-gigiri/static/js/main.f108aaf8.js.map",
     "453.37a6933b.chunk.js.map": "/Aplikasion-gigiri/static/js/453.37a6933b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6a5b7105.css",
-    "static/js/main.c0acb8de.js"
+    "static/js/main.f108aaf8.js"
   ]
 }
