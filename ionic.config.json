@@ -1,0 +1,7 @@
+{
+    "name": "Digui",
+    "integrations": {
+      "capacitor": {}
+    },
+    "type": "react"
+  }

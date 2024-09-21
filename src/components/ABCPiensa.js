@@ -1,6 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 
+/*Al parecer, esta es la manera "correcta" de incluir imagenes locales en react
+No me parece bonito, ni elegante, pero es como funciona...*/ 
+import arbol  from "../assets/images/ABCPiensa/arbol.png";
+import billete  from "../assets/images/ABCPiensa/billete.png";
+import casa from "../assets/images/ABCPiensa/casa.png";
+import dedo from "../assets/images/ABCPiensa/dedo.png";
+import estrella from "../assets/images/ABCPiensa/estrella.png";
+import flor from "../assets/images/ABCPiensa/flor.png";
+import galleta  from "../assets/images/ABCPiensa/galleta.png";
+import hoja from "../assets/images/ABCPiensa/hoja.png";
+import iman from "../assets/images/ABCPiensa/iman.png";
+import jarron from "../assets/images/ABCPiensa/jarron.png";
+import kilo from "../assets/images/ABCPiensa/kilo.png";
+import luna from "../assets/images/ABCPiensa/luna.png";
+import mochila  from "../assets/images/ABCPiensa/mochila.png";
+import nube from "../assets/images/ABCPiensa/nube.png";
+import ñame from "../assets/images/ABCPiensa/ñame.png";
+import ojo  from "../assets/images/ABCPiensa/ojo.png";
+import pera from "../assets/images/ABCPiensa/pera.png";
+import queso  from "../assets/images/ABCPiensa/queso.png";
+import reloj  from "../assets/images/ABCPiensa/reloj.png";
+import sopa from "../assets/images/ABCPiensa/sopa.png";
+import tuerca from "../assets/images/ABCPiensa/tuerca.png";
+import uva  from "../assets/images/ABCPiensa/uva.png";
+import vaso from "../assets/images/ABCPiensa/vaso.png";
+import wifi from "../assets/images/ABCPiensa/wifi.png";
+import xilofono from "../assets/images/ABCPiensa/xilofono.png";
+import yoyo from "../assets/images/ABCPiensa/yoyo.png";
+import zapato from "../assets/images/ABCPiensa/zapato.png";
+
 function ABCPiensa({ showMenuScreen }) {
   const letters = [
     ['A', 'B', 'C', 'D', 'E', 'Y'],
@@ -12,33 +42,33 @@ function ABCPiensa({ showMenuScreen }) {
 
   // Lista de imágenes ordenadas alfabéticamente
   const initialImages = [
-    { src: '/images/arbol.png', letter: 'A' },
-    { src: '/images/billete.png', letter: 'B' },
-    { src: '/images/casa.png', letter: 'C' },
-    { src: '/images/dedo.png', letter: 'D' },
-    { src: '/images/estrella.png', letter: 'E' },
-    { src: '/images/flor.png', letter: 'F' },
-    { src: '/images/galleta.png', letter: 'G' },
-    { src: '/images/hoja.png', letter: 'H' },
-    { src: '/images/iman.png', letter: 'I' },
-    { src: '/images/jarron.png', letter: 'J' },
-    { src: '/images/kilo.png', letter: 'K' },
-    { src: '/images/luna.png', letter: 'L' },
-    { src: '/images/mochila.png', letter: 'M' },
-    { src: '/images/nube.png', letter: 'N' },
-    { src: '/images/ñame.png', letter: 'Ñ' },
-    { src: '/images/ojo.png', letter: 'O' },
-    { src: '/images/pera.png', letter: 'P' },
-    { src: '/images/queso.png', letter: 'Q' },
-    { src: '/images/reloj.png', letter: 'R' },
-    { src: '/images/sopa.png', letter: 'S' },
-    { src: '/images/tuerca.png', letter: 'T' },
-    { src: '/images/uva.png', letter: 'U' },
-    { src: '/images/vaso.png', letter: 'V' },
-    { src: '/images/wifi.png', letter: 'W' },
-    { src: '/images/xilofono.png', letter: 'X' },
-    { src: '/images/yoyo.png', letter: 'Y' },
-    { src: '/images/zapato.png', letter: 'Z' }
+    { src: arbol, letter: 'A' },
+    { src: billete, letter: 'B' },
+    { src: casa, letter: 'C' },
+    { src: dedo, letter: 'D' },
+    { src: estrella, letter: 'E' },
+    { src: flor, letter: 'F' },
+    { src: galleta, letter: 'G' },
+    { src: hoja, letter: 'H' },
+    { src: iman, letter: 'I' },
+    { src: jarron, letter: 'J' },
+    { src: kilo, letter: 'K' },
+    { src: luna, letter: 'L' },
+    { src: mochila, letter: 'M' },
+    { src: nube, letter: 'N' },
+    { src: ñame, letter: 'Ñ' },
+    { src: ojo, letter: 'O' },
+    { src: pera, letter: 'P' },
+    { src: queso, letter: 'Q' },
+    { src: reloj, letter: 'R' },
+    { src: sopa, letter: 'S' },
+    { src: tuerca, letter: 'T' },
+    { src: uva, letter: 'U' },
+    { src: vaso, letter: 'V' },
+    { src: wifi, letter: 'W' },
+    { src: xilofono, letter: 'X' },
+    { src: yoyo, letter: 'Y' },
+    { src: zapato, letter: 'Z' }
   ];
 
   const [images, setImages] = useState(initialImages);
