@@ -32,12 +32,53 @@ import yoyo from "../assets/images/ABCPiensa/yoyo.png";
 import zapato from "../assets/images/ABCPiensa/zapato.png";
 
 function ABCPiensa({ showMenuScreen }) {
+  const letras = ['A', 'B', 'C', 'D', 'E', 'Y', 'F', 'G', 'H', 'I', 'J', 'Z', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X']
+
+  const fila1 = [];
+  for (i = 0; i < 6; i++){
+    const letra = letras[Math.floor(Math.random() * letras.length)];
+    fila1.add(letra);
+    letraIndex = letras.indexOf(letra);
+    letras.splice(letraIndex, 1);
+  }
+
+  const fila2 = [];
+  for (i = 0; i < 6; i++){
+    const letra = letras[Math.floor(Math.random() * letras.length)];
+    fila2.add(letra);
+    letraIndex = letras.indexOf(letra);
+    letras.splice(letraIndex, 1);
+  }
+
+  const fila3 = [];
+  for (i = 0; i < 5; i++){
+    const letra = letras[Math.floor(Math.random() * letras.length)];
+    fila3.add(letra);
+    letraIndex = letras.indexOf(letra);
+    letras.splice(letraIndex, 1);
+  }
+  
+  const fila4 = [];
+  for (i = 0; i < 5; i++){
+    const letra = letras[Math.floor(Math.random() * letras.length)];
+    fila4.add(letra);
+    letraIndex = letras.indexOf(letra);
+    letras.splice(letraIndex, 1);
+  }
+
+  const fila5 = [];
+  for (i = 0; i < 5; i++){
+    const letra = letras[Math.floor(Math.random() * letras.length)];
+    fila5.add(letra);
+    letraIndex = letras.indexOf(letra);
+    letras.splice(letraIndex, 1);
+  }
   const letters = [
-    ['A', 'B', 'C', 'D', 'E', 'Y'],
-    ['F', 'G', 'H', 'I', 'J', 'Z'],
-    ['K', 'L', 'M', 'N', 'Ñ'],
-    ['O', 'P', 'Q', 'R', 'S'],
-    ['T', 'U', 'V', 'W', 'X']
+    fila1,
+    fila2,
+    fila3,
+    fila4,
+    fila5
   ];
 
   // Lista de imágenes ordenadas alfabéticamente
