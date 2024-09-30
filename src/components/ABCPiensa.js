@@ -34,44 +34,46 @@ import zapato from "../assets/images/ABCPiensa/zapato.png";
 function ABCPiensa({ showMenuScreen }) {
   const letras = ['A', 'B', 'C', 'D', 'E', 'Y', 'F', 'G', 'H', 'I', 'J', 'Z', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X']
 
+  let i;
+
   const fila1 = [];
   for (i = 0; i < 6; i++){
     const letra = letras[Math.floor(Math.random() * letras.length)];
-    fila1.add(letra);
-    letraIndex = letras.indexOf(letra);
+    fila1.push(letra);
+    const letraIndex = letras.indexOf(letra);
     letras.splice(letraIndex, 1);
   }
 
   const fila2 = [];
   for (i = 0; i < 6; i++){
     const letra = letras[Math.floor(Math.random() * letras.length)];
-    fila2.add(letra);
-    letraIndex = letras.indexOf(letra);
+    fila2.push(letra);
+    const letraIndex = letras.indexOf(letra);
     letras.splice(letraIndex, 1);
   }
 
   const fila3 = [];
   for (i = 0; i < 5; i++){
     const letra = letras[Math.floor(Math.random() * letras.length)];
-    fila3.add(letra);
-    letraIndex = letras.indexOf(letra);
+    fila3.push(letra);
+    const letraIndex = letras.indexOf(letra);
     letras.splice(letraIndex, 1);
   }
   
   const fila4 = [];
   for (i = 0; i < 5; i++){
     const letra = letras[Math.floor(Math.random() * letras.length)];
-    fila4.add(letra);
-    letraIndex = letras.indexOf(letra);
+    fila4.push(letra);
+    const letraIndex = letras.indexOf(letra);
     letras.splice(letraIndex, 1);
   }
 
   const fila5 = [];
   for (i = 0; i < 5; i++){
     const letra = letras[Math.floor(Math.random() * letras.length)];
-    fila5.add(letra);
-    letraIndex = letras.indexOf(letra);
-    letras.splice(letraIndex, 1);
+    fila5.push(letra);
+    const letraIndex = letras.indexOf(letra);
+    letras. splice(letraIndex, 1);
   }
   const letters = [
     fila1,
