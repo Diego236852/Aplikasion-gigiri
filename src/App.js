@@ -29,7 +29,13 @@ function App() {
   };
 
   // Verificar si estamos en una pantalla después de iniciar sesión
-  const shouldShowNavBars = screen !== 'welcome' && screen !== 'info' && screen !== 'login' && screen !== 'createAccount' && screen !== 'abcpiensa';
+  const shouldShowNavBars = (
+    screen !== 'welcome' 
+    && screen !== 'info' 
+    && screen !== 'login' 
+    && screen !== 'createAccount' 
+    && screen !== 'abcpiensa'
+  );
 
   return (
     <div className="App">
@@ -39,11 +45,24 @@ function App() {
       {/* Pantallas principales */}
       {screen === 'welcome' && <WelcomeScreen showInfoScreen={() => navigate('info')} />}
       {screen === 'info' && <InfoScreen showLoginScreen={() => navigate('login')} />}
-      {screen === 'login' && <LoginScreen showCreateAccountScreen={() => navigate('createAccount')} showMenuScreen={() => navigate('menu')} />}
-      {screen === 'createAccount' && <CreateAccountScreen showLoginScreen={() => navigate('login')} />}
+      
+      {screen === 'login' 
+        && <LoginScreen 
+          showCreateAccountScreen={() => navigate('createAccount')} 
+          showMenuScreen={() => navigate('menu')} 
+        />
+      }
+      
+      {screen === 'createAccount' 
+        && <CreateAccountScreen 
+          showLoginScreen={() => navigate('login')} 
+        />
+      }
+      
       {screen === 'menu' && <MenuScreen showABCPiensa={() => navigate('abcpiensa')} />}
       {screen === 'abcpiensa' && <ABCPiensa showMenuScreen={() => navigate('menu')} />}
       {screen === 'settings' && <SettingsScreen />}
+
 
       {/* Mostrar BottomNav solo después de iniciar sesión */}
       {shouldShowNavBars && <BottomNav currentScreen={screen} navigate={navigate} />}

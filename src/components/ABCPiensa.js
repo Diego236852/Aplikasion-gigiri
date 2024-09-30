@@ -3,28 +3,28 @@ import '../App.css';
 
 /*Al parecer, esta es la manera "correcta" de incluir imagenes locales en react
 No me parece bonito, ni elegante, pero es como funciona...*/ 
-import arbol  from "../assets/images/ABCPiensa/arbol.png";
-import billete  from "../assets/images/ABCPiensa/billete.png";
+import arbol from "../assets/images/ABCPiensa/arbol.png";
+import billete from "../assets/images/ABCPiensa/billete.png";
 import casa from "../assets/images/ABCPiensa/casa.png";
 import dedo from "../assets/images/ABCPiensa/dedo.png";
 import estrella from "../assets/images/ABCPiensa/estrella.png";
 import flor from "../assets/images/ABCPiensa/flor.png";
-import galleta  from "../assets/images/ABCPiensa/galleta.png";
+import galleta from "../assets/images/ABCPiensa/galleta.png";
 import hoja from "../assets/images/ABCPiensa/hoja.png";
 import iman from "../assets/images/ABCPiensa/iman.png";
 import jarron from "../assets/images/ABCPiensa/jarron.png";
 import kilo from "../assets/images/ABCPiensa/kilo.png";
 import luna from "../assets/images/ABCPiensa/luna.png";
-import mochila  from "../assets/images/ABCPiensa/mochila.png";
+import mochila from "../assets/images/ABCPiensa/mochila.png";
 import nube from "../assets/images/ABCPiensa/nube.png";
 import ñame from "../assets/images/ABCPiensa/ñame.png";
-import ojo  from "../assets/images/ABCPiensa/ojo.png";
+import ojo from "../assets/images/ABCPiensa/ojo.png";
 import pera from "../assets/images/ABCPiensa/pera.png";
-import queso  from "../assets/images/ABCPiensa/queso.png";
-import reloj  from "../assets/images/ABCPiensa/reloj.png";
+import queso from "../assets/images/ABCPiensa/queso.png";
+import reloj from "../assets/images/ABCPiensa/reloj.png";
 import sopa from "../assets/images/ABCPiensa/sopa.png";
 import tuerca from "../assets/images/ABCPiensa/tuerca.png";
-import uva  from "../assets/images/ABCPiensa/uva.png";
+import uva from "../assets/images/ABCPiensa/uva.png";
 import vaso from "../assets/images/ABCPiensa/vaso.png";
 import wifi from "../assets/images/ABCPiensa/wifi.png";
 import xilofono from "../assets/images/ABCPiensa/xilofono.png";
@@ -37,7 +37,7 @@ function ABCPiensa({ showMenuScreen }) {
   let i;
 
   const fila1 = [];
-  for (i = 0; i < 6; i++){
+  for (let i = 0; i < 6; i++){
     const letra = letras[Math.floor(Math.random() * letras.length)];
     fila1.push(letra);
     const letraIndex = letras.indexOf(letra);
@@ -45,7 +45,7 @@ function ABCPiensa({ showMenuScreen }) {
   }
 
   const fila2 = [];
-  for (i = 0; i < 6; i++){
+  for (let i = 0; i < 6; i++){
     const letra = letras[Math.floor(Math.random() * letras.length)];
     fila2.push(letra);
     const letraIndex = letras.indexOf(letra);
@@ -53,7 +53,7 @@ function ABCPiensa({ showMenuScreen }) {
   }
 
   const fila3 = [];
-  for (i = 0; i < 5; i++){
+  for (let i = 0; i < 5; i++){
     const letra = letras[Math.floor(Math.random() * letras.length)];
     fila3.push(letra);
     const letraIndex = letras.indexOf(letra);
@@ -61,7 +61,7 @@ function ABCPiensa({ showMenuScreen }) {
   }
   
   const fila4 = [];
-  for (i = 0; i < 5; i++){
+  for (let i = 0; i < 5; i++){
     const letra = letras[Math.floor(Math.random() * letras.length)];
     fila4.push(letra);
     const letraIndex = letras.indexOf(letra);
@@ -69,12 +69,13 @@ function ABCPiensa({ showMenuScreen }) {
   }
 
   const fila5 = [];
-  for (i = 0; i < 5; i++){
+  for (let i = 0; i < 5; i++){
     const letra = letras[Math.floor(Math.random() * letras.length)];
     fila5.push(letra);
     const letraIndex = letras.indexOf(letra);
-    letras. splice(letraIndex, 1);
+    letras.splice(letraIndex, 1);
   }
+  
   const letters = [
     fila1,
     fila2,
@@ -133,15 +134,19 @@ function ABCPiensa({ showMenuScreen }) {
           ...prev,
           [`${rowIndex}-${colIndex}`]: selectedImage.src
         }));
+        
         setImages((prevImages) => prevImages.filter(img => img.src !== selectedImage.src));
         setSelectedImage(null); // Desseleccionar la imagen después de colocarla
+        
       } else {
         setIncorrectBoxes(prev => new Set(prev).add(`${rowIndex}-${colIndex}`));
+        
         setTimeout(() => setIncorrectBoxes(prev => {
           const newSet = new Set(prev);
           newSet.delete(`${rowIndex}-${colIndex}`);
           return newSet;
         }), 500);
+        
       }
     }
   };
@@ -164,7 +169,12 @@ function ABCPiensa({ showMenuScreen }) {
             {row.map((letter, colIndex) => (
               <div
                 key={colIndex}
-                className={`letter-box ${incorrectBoxes.has(`${rowIndex}-${colIndex}`) ? 'incorrect-animation' : ''}`}
+                className={
+                  `letter-box ${incorrectBoxes.has(`${rowIndex}-${colIndex}`)
+                  ? 'incorrect-animation' 
+                  : ''
+                  }`
+                }
                 onClick={() => handleLetterClick(letter, rowIndex, colIndex)} // Usar clic en lugar de arrastrar
               >
                 {correctBoxes[`${rowIndex}-${colIndex}`] ? (
@@ -192,7 +202,12 @@ function ABCPiensa({ showMenuScreen }) {
 
       {hasWon && (
         <div className="winner-message">
-          <img src={process.env.PUBLIC_URL + '/images/trophy.png'} alt="Trophy" className="trophy-image" />
+          <img 
+            src={process.env.PUBLIC_URL + '/images/trophy.png'} 
+            alt="Trophy" 
+            className="trophy-image" 
+          />
+          
           <p className="winner-text">¡Eres un campeón, has ganado!</p>
         </div>
       )}

@@ -19,12 +19,25 @@ function WelcomeScreen({ showInfoScreen }) {
           {/* Texto curvado */}
           <path id="curve" d="M 150 130 Q 250 190 350 130" fill="transparent" />
           <text>
-            <textPath href="#curve" startOffset="50%" textAnchor="middle" fontFamily="Quicksand" fill="#C71585" fontSize="20px">
+            <textPath 
+              href="#curve" 
+              startOffset="50%" 
+              textAnchor="middle" 
+              fontFamily="Quicksand" 
+              fill="#C71585" 
+              fontSize="20px"
+            >
               Creciendo Juntos
             </textPath>
           </text>
+          
           {/* Línea curva negra */}
-          <path d="M 150 145 Q 250 205 350 145" stroke="black" strokeWidth="5" fill="transparent" />
+          <path 
+            d="M 150 145 Q 250 205 350 145" 
+            stroke="black" 
+            strokeWidth="5" 
+            fill="transparent" 
+          />
         </svg>
       </div>
     </div>
